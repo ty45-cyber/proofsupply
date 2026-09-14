@@ -1,0 +1,54 @@
+pragma language_version 0.23;
+
+import CompactStandardLibrary;
+
+/**
+ * ProofSupply
+ *
+ * A supplier proves procurement eligibility without revealing the private
+ * evidence used to satisfy the buyer's policy.
+ */
+export enum VerificationState {
+  UNVERIFIED,
+  QUALIFIED,
+  REJECTED
+}
+
+export ledger state: VerificationState;
+export ledger supplierCommitment: Bytes<32>;
+export ledger verificationId: Bytes<32>;
+export ledger minimumRevenue: Uint<64>;
+export ledger requiredJurisdiction: Bytes<32>;
+
+witness localSecretKey(): Bytes<32>;
+witness privateAnnualRevenue(): Uint<64>;
+witness privateCertificationValid(): Boolean;
+witness privateJurisdiction(): Bytes<32>;
+
+export circuit supplierCommitmentFor(sk: Bytes<32>): Bytes<32> {
+  return persistentHash<Vector<2, Bytes<32>>>([
+    pad(32, "proofsupply:supplier:"),
+    sk,
+  ]);
+}
+
+export circuit verifyEligibility(
+  minimumRevenue_: Uint<64>,
+  requiredJurisdiction_: Bytes<32>,
+  verificationId_: Bytes<32>
+): [] {
+  const revenue = privateAnnualRevenue();
+  const certificationValid = privateCertificationValid();
+  const jurisdiction = privateJurisdiction();
+  const commitment = supplierCommitmentFor(localSecretKey());
+
+  assert(revenue >= minimumRevenue_, "Revenue threshold not satisfied");
+  assert(certificationValid, "Required certification is not valid");
+  assert(jurisdiction == requiredJurisdiction_, "Jurisdiction is not eligible");
+
+  state = VerificationState.QUALIFIED;
+  supplierCommitment = disclose(commitment);
+  verificationId = disclose(verificationId_);
+  minimumRevenue = disclose(minimumRevenue_);
+  requiredJurisdiction = disclose(requiredJurisdiction_);
+}

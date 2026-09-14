@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ProofSupply — private supplier qualification powered by Midnight." />
+  <title>ProofSupply — Private Supplier Qualification</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">P</span><span>ProofSupply</span></div>
+    <div class="network-pill"><span class="dot"></span> Midnight · Privacy-first procurement</div>
+  </header>
+
+  <main class="shell">
+    <section class="hero">
+      <div class="eyebrow">PRIVATE QUALIFICATION INFRASTRUCTURE</div>
+      <h1>Prove your supplier qualifies.<br><em>Don’t expose the evidence.</em></h1>
+      <p class="hero-copy">ProofSupply lets buyers verify sensitive supplier requirements through zero-knowledge proofs, while the supplier keeps revenue and compliance data private.</p>
+      <div class="hero-actions">
+        <button id="runDemo" class="primary">Run qualification demo <span>→</span></button>
+        <button id="showArchitecture" class="secondary">View privacy boundary</button>
+      </div>
+    </section>
+
+    <section class="workspace">
+      <div class="panel buyer-panel">
+        <div class="panel-head"><div><div class="panel-kicker">01 · BUYER POLICY</div><h2>Procurement requirements</h2></div><span class="status-tag">PUBLIC CRITERIA</span></div>
+        <div class="field-grid">
+          <label>Minimum annual revenue<input id="minimumRevenue" type="number" value="500000" min="0" step="50000"></label>
+          <label>Allowed jurisdiction<select id="jurisdiction"><option value="ke">Kenya</option><option value="tz">Tanzania</option><option value="ug">Uganda</option><option value="za">South Africa</option></select></label>
+        </div>
+        <label class="check-row"><input id="certRequired" type="checkbox" checked><span>Require valid certification</span></label>
+        <div class="criteria-preview"><span>Buyer sees</span><strong>Threshold + policy</strong></div>
+      </div>
+
+      <div class="flow-arrow">↓</div>
+
+      <div class="panel supplier-panel">
+        <div class="panel-head"><div><div class="panel-kicker">02 · SUPPLIER PROFILE</div><h2>Private evidence</h2></div><span class="status-tag private">PRIVATE</span></div>
+        <div class="field-grid">
+          <label>Actual annual revenue<input id="supplierRevenue" type="number" value="742000" min="0" step="1000"></label>
+          <label>Supplier jurisdiction<select id="supplierJurisdiction"><option value="ke">Kenya</option><option value="tz">Tanzania</option><option value="ug">Uganda</option><option value="za">South Africa</option></select></label>
+        </div>
+        <label class="check-row"><input id="certValid" type="checkbox" checked><span>Certification is valid</span></label>
+        <div class="privacy-box"><span class="lock">◈</span><div><strong>Stays private</strong><p>The exact revenue and evidence are inputs to the proof, not buyer-visible fields.</p></div></div>
+      </div>
+
+      <div class="flow-arrow">↓</div>
+
+      <div class="proof-panel" id="proofPanel">
+        <div class="proof-left"><div class="panel-kicker">03 · ZERO-KNOWLEDGE VERIFICATION</div><h2>Generate the qualification proof</h2><p>Evaluate the supplier profile against the buyer policy. Only the decision crosses the privacy boundary.</p><button id="generateProof" class="primary">Generate proof <span>↗</span></button></div>
+        <div class="proof-visual"><div class="proof-orb"><div class="orb-core">ZK</div></div><div class="proof-lines"><span>private witness</span><span>policy circuit</span><span>public decision</span></div></div>
+      </div>
+
+      <div class="flow-arrow">↓</div>
+
+      <div class="verification-panel" id="resultPanel">
+        <div class="decision-icon" id="decisionIcon">✓</div>
+        <div class="decision-copy"><div class="panel-kicker">04 · BUYER RESULT</div><h2 id="decisionTitle">Ready to verify</h2><p id="decisionBody">Run the proof to produce a shareable verification record.</p></div>
+        <div class="decision-meta"><span>Verification ID</span><strong id="verificationId">—</strong></div>
+      </div>
+    </section>
+
+    <section id="architecture" class="architecture hidden">
+      <div class="section-head"><div class="eyebrow">PRIVACY BOUNDARY</div><h2>What the buyer gets vs. what stays private</h2></div>
+      <div class="boundary-grid">
+        <div class="boundary-card private-card"><span class="status-tag private">PRIVATE</span><h3>Supplier evidence</h3><p>Exact revenue, certification state, jurisdiction and the supplier's private witness inputs.</p></div>
+        <div class="boundary-arrow">ZK PROOF →</div>
+        <div class="boundary-card public-card"><span class="status-tag">PUBLIC</span><h3>Qualification result</h3><p>Pass/fail decision, policy reference, timestamp and verification identifier.</p></div>
+      </div>
+    </section>
+
+    <section class="metrics">
+      <div><strong>1</strong><span>privacy-critical workflow</span></div>
+      <div><strong>0</strong><span>raw revenue disclosures</span></div>
+      <div><strong>ZK</strong><span>proof-based verification</span></div>
+      <div><strong>4</strong><span>expandable policy dimensions</span></div>
+    </section>
+  </main>
+
+  <footer><span>ProofSupply</span><span>Built for the Midnight Buildathon · Wave 1</span></footer>
+  <script src="app.js"></script>
+</body>
+</html>

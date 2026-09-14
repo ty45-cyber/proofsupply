@@ -1,0 +1,15 @@
+{
+  "name": "ProofSupply",
+  "version": "0.2.0",
+  "status": "source-complete-awaiting-network-build",
+  "privacy": "private supplier evidence is consumed through Compact witnesses and only derived/public policy results are disclosed",
+  "contract": "contract/src/proofsupply.compact",
+  "runtime": "Midnight.js 4.1.1",
+  "compact_language": "0.23",
+  "node": ">=24.11.1",
+  "verification": [
+    "local syntax/static repository validation",
+    "Compact compilation required before live claim",
+    "real network transaction required before submission claim"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "@proofsupply/api",
+  "private": true,
+  "type": "module",
+  "scripts": { "typecheck": "tsc -p tsconfig.json --noEmit" },
+  "dependencies": {
+    "@midnight-ntwrk/midnight-js-contracts": "4.1.1",
+    "@midnight-ntwrk/midnight-js-protocol": "4.1.1",
+    "@midnight-ntwrk/midnight-js-types": "4.1.1",
+    "@midnight-ntwrk/midnight-js-utils": "4.1.1",
+    "rxjs": "^7.8.2"
+  }
+}
