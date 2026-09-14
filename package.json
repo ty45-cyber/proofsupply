@@ -8,9 +8,12 @@
   "scripts": {
     "compact": "npm run compact --workspace @proofsupply/contract",
     "build": "npm run build --workspace @proofsupply/contract",
+    "build:contract": "npm run compact && npm run build",
     "typecheck": "npm run typecheck --workspace @proofsupply/contract",
     "test": "npm run test --workspace @proofsupply/contract",
     "validate": "bash scripts/validate.sh",
+    "deploy": "node scripts/deploy.mjs",
+    "dev": "npx serve web -l 3000",
     "ci": "npm run compact && npm run typecheck && npm run build && npm run test"
   },
   "dependencies": {

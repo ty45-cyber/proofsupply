@@ -84,6 +84,13 @@
   </main>
 
   <footer><span>ProofSupply</span><span>Built for the Midnight Buildathon · Wave 1</span></footer>
+  <!-- Runtime env injected by Vercel (or local dev server) -->
+  <script>
+    window.__ENV__ = {
+      CONTRACT_ADDRESS: '%%CONTRACT_ADDRESS%%',
+      MIDNIGHT_NETWORK: '%%MIDNIGHT_NETWORK%%'
+    };
+  </script>
   <script src="app.js"></script>
 </body>
 </html>

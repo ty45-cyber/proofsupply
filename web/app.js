@@ -1,3 +1,7 @@
+// Injected by Vercel env or local .env loader
+const CONTRACT_ADDRESS = (typeof window !== 'undefined' && window.__ENV__?.CONTRACT_ADDRESS) || '';
+if (CONTRACT_ADDRESS) console.info('[ProofSupply] contract:', CONTRACT_ADDRESS);
+
 const jurisdictionNames={ke:'Kenya',tz:'Tanzania',ug:'Uganda',za:'South Africa'};
 const id=()=>`PS-${crypto.getRandomValues(new Uint32Array(2))[0].toString(16).slice(0,6).toUpperCase()}`;
 

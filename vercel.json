@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "name": "proofsupply",
+  "builds": [
+    { "src": "web/**", "use": "@vercel/static" }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "/web/$1" }
+  ],
+  "env": {
+    "MIDNIGHT_NETWORK": "@midnight_network",
+    "MIDNIGHT_NODE_URL": "@midnight_node_url",
+    "MIDNIGHT_INDEXER_URL": "@midnight_indexer_url",
+    "MIDNIGHT_PROOF_SERVER_URL": "@midnight_proof_server_url",
+    "CONTRACT_ADDRESS": "@contract_address"
+  }
+}
